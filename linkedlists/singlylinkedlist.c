@@ -19,7 +19,7 @@ void insertBeforeNode(struct node **, int, int);
 void insertAtNode(struct node **, int, int);
 void insertAfterNode(struct node **, int, int);
 void deleteBeforeNode(struct node **, int);
-void deleteNodeNew(struct node **, int);
+void deleteNode(struct node **, int);
 void deleteAfterNode(struct node **, int);
 void printList(struct node *);
 int countNodes(struct node *);
