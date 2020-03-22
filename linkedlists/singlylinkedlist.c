@@ -10,13 +10,11 @@ struct node
 void push(struct node **, int);
 void append(struct node **, int);
 void insertBeforeLocation(struct node **, int, int);
-void insertAtLocation(struct node **, int, int);
 void insertAfterLocation(struct node **, int, int);
 void deleteBeforeLocation(struct node **, int);
 void deleteAtLocation(struct node **, int);
 void deleteAfterLocation(struct node **, int);
 void insertBeforeNode(struct node **, int, int);
-void insertAtNode(struct node **, int, int);
 void insertAfterNode(struct node **, int, int);
 void deleteBeforeNode(struct node **, int);
 void deleteNode(struct node **, int);
@@ -137,55 +135,6 @@ void insertBeforeLocation(struct node **head, int location, int new_data)
 
             new_node->link = ref_node->link;
             ref_node->link = new_node;
-        }
-    }
-}
-
-void insertAtLocation(struct node **head, int location, int new_data)
-{
-    int count = countNodes(*head);
-
-    if(location >= count)
-        printf("No. of elements are less in list\n");
-    else if(location < 0)
-        printf("Invalid location\n");
-    else
-    {
-        struct node *new_node = (struct node *)malloc(sizeof(struct node));
-        if(new_node == NULL)
-        {
-            printf("Memory allocation failed");
-            exit(EXIT_FAILURE);
-        }
-        else
-        {
-            new_node->data = new_data;
-
-            if(*head == NULL)
-            {
-                new_node->link = NULL;
-                *head = new_node;
-            }
-            else if(location == 0)
-            {
-                new_node->link = (*head);
-                *head = new_node;
-            }
-            else
-            {
-                struct node *temp_node, *ref_node;
-                int i;
-
-                temp_node = ref_node = *head;
-                for(i=0; i<location-1; i++)
-                    ref_node = ref_node->link;
-
-                for(i=0; i<location; i++)
-                    temp_node = temp_node->link;
-
-                ref_node->link = new_node;
-                new_node->link = temp_node;
-            }
         }
     }
 }
@@ -424,65 +373,6 @@ void insertBeforeNode(struct node **head_ref, int new_data, int key)
                 {
                     new_node->link = next_node;
                     ref_node->link = new_node;
-                }
-            }
-        }
-    }
-}
-
-void insertAtNode(struct node **head, int new_data, int key)
-{
-    struct node * new_node = (struct node *)malloc(sizeof(struct node));
-    if(new_node == NULL)
-    {
-        printf("Memory allocation failed");
-        exit(EXIT_FAILURE);
-    }
-    else
-    {
-        new_node->data = new_data;
-
-        if(*head == NULL)
-        {
-            new_node->link = NULL;
-            *head = new_node;
-        }
-        else
-        {
-            struct node *prev_node, *next_node, *temp_node;
-
-            prev_node = temp_node = *head;
-            next_node = temp_node->link;
-
-            if((prev_node == NULL || prev_node != NULL) && prev_node->data == key)
-            {
-                new_node->link = *head;
-                *head = new_node;
-            }
-            else if(prev_node->link == NULL && prev_node->data != key)
-            {
-                printf("Reference node not found\n");
-                free(new_node);
-            }
-
-            else if(prev_node->link != NULL && prev_node->data != key)
-            {
-                while(1)
-                {
-                    if(next_node->data == key)
-                    {
-                        prev_node->link = new_node;
-                        new_node->link = next_node;
-                        break;
-                    }
-                    else if(next_node->data != key && next_node->link == NULL)
-                    {
-                        printf("Reference node not found\n");
-                        free(new_node);
-                        break;
-                    }
-                    prev_node = prev_node->link;
-                    next_node = next_node->link;
                 }
             }
         }
