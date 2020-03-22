@@ -14,11 +14,11 @@ void insertAfterLocation(struct node **, int, int);
 void deleteBeforeLocation(struct node **, int);
 void deleteAtLocation(struct node **, int);
 void deleteAfterLocation(struct node **, int);
-void insertBeforeNode(struct node **, int, int);
-void insertAfterNode(struct node **, int, int);
-void deleteBeforeNode(struct node **, int);
-void deleteNode(struct node **, int);
-void deleteAfterNode(struct node **, int);
+void insertBeforeElement(struct node **, int, int);
+void insertAfterElement(struct node **, int, int);
+void deleteBeforeElement(struct node **, int);
+void deleteElement(struct node **, int);
+void deleteAfterElement(struct node **, int);
 void printList(struct node *);
 int countNodes(struct node *);
 void freeList(struct node **);
@@ -314,7 +314,7 @@ void deleteAfterLocation(struct node **head, int location)
     }
 }
 
-void insertBeforeNode(struct node **head_ref, int new_data, int key)
+void insertBeforeElement(struct node **head_ref, int new_data, int key)
 {
     struct node *new_node = (struct node *)malloc(sizeof(struct node));
     if(new_node == NULL)
@@ -379,7 +379,7 @@ void insertBeforeNode(struct node **head_ref, int new_data, int key)
     }
 }
 
-void insertAfterNode(struct node **head_ref, int new_data, int key)
+void insertAfterElement(struct node **head_ref, int new_data, int key)
 {
     struct node *new_node = (struct node *)malloc(sizeof(struct node));
     if(new_node == NULL)
@@ -429,7 +429,7 @@ void insertAfterNode(struct node **head_ref, int new_data, int key)
     }
 }
 
-void deleteBeforeNode(struct node **head, int key)  //OK
+void deleteBeforeElement(struct node **head, int key)
 {
     if(*head == NULL)
         printf("List can't be empty\n");
@@ -485,7 +485,7 @@ void deleteBeforeNode(struct node **head, int key)  //OK
     }
 }
 
-void deleteNode(struct node **head, int key)
+void deleteElement(struct node **head, int key)
 {
     if(*head == NULL)
         printf("List can't be empty\n");
@@ -538,7 +538,7 @@ void deleteNode(struct node **head, int key)
     }
 }
 
-void deleteAfterNode(struct node **head, int key)   //OK
+void deleteAfterElement(struct node **head, int key)
 {
     if(*head == NULL)
         printf("List can't be empty\n");
