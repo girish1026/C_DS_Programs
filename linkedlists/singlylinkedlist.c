@@ -559,6 +559,7 @@ void deleteAfterElement(struct node **head, int key)
             {
                 if(prev_node->data == key || prev_node->link == NULL)
                     break;
+                
                 count++;
                 prev_node = prev_node->link;
                 temp_node = temp_node->link;
@@ -567,10 +568,19 @@ void deleteAfterElement(struct node **head, int key)
             if(prev_node->link != NULL && prev_node->data == key)
             {
                 prev_node = *head;
+                
                 for(int i = 0; i < count + 1; i++)
                     prev_node = prev_node->link;
+                
                 temp_node->link = prev_node->link;
-                free(prev_node);
+                
+                if(prev_node->link == NULL)
+                {
+                    temp_node->link = NULL;
+                    free(prev_node);
+                }
+                else
+                    free(prev_node);
             }
             else if(prev_node->link == NULL && prev_node->data == key)
                 printf("Can't delete node after last node\n");
